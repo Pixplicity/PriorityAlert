@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Priority Alert</string>
+    <string name="accessibility_service_description">Provides access to notifications so that Priority Alert can inspect them and provide alerts</string>
+</resources>

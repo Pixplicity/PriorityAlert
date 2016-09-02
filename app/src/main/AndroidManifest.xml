@@ -1,0 +1,36 @@
+<manifest package="com.pixplicity.priorityalert"
+          xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+
+        <!-- Respond to system events, such as toggling DND mode -->
+        <receiver android:name=".receivers.EventReceiver"/>
+
+        <!-- Respond to incoming phone calls -->
+        <receiver android:name=".receivers.PhoneReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PHONE_STATE"/>
+            </intent-filter>
+        </receiver>
+
+        <!-- Accessibility service for reading notifications -->
+        <service
+            android:name=".services.NotificationService"
+            android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
+            <intent-filter>
+                <action android:name="android.accessibilityservice.AccessibilityService"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.accessibilityservice"
+                android:resource="@xml/accessibility_service_config"/>
+        </service>
+
+    </application>
+
+</manifest>
