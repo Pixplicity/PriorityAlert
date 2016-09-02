@@ -9,7 +9,6 @@
         android:theme="@style/AppTheme">
 
         <!-- Respond to system events, such as toggling DND mode -->
-        <receiver android:name=".receivers.SilentModeReceiver"/>
 
         <!-- Respond to incoming phone calls -->
         <receiver android:name=".receivers.PhoneReceiver">
