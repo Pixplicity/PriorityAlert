@@ -12,7 +12,11 @@ public class PhoneReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String phoneNumber = intent.getStringExtra("incoming_number");
-        Log.i(TAG, "incoming call: " + phoneNumber);
+        Log.d(TAG, "incoming call: " + phoneNumber);
+
+        if (PriorityReceiver.isRelevant(context, phoneNumber)) {
+            PriorityReceiver.invoke(context);
+        }
     }
 
 }

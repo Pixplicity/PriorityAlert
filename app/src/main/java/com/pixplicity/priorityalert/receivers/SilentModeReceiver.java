@@ -4,11 +4,11 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 
-public class EventReceiver extends BroadcastReceiver {
+public class SilentModeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO
+        // TODO check if DND is enabled and toggle NotificationService and PhoneReceiver
     }
 
 }

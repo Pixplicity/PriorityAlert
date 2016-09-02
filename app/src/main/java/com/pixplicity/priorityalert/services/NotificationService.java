@@ -6,6 +6,8 @@ import android.app.Notification;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 
+import com.pixplicity.priorityalert.receivers.PriorityReceiver;
+
 
 public class NotificationService extends AccessibilityService {
 
@@ -24,9 +26,13 @@ public class NotificationService extends AccessibilityService {
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
         Notification notification = (Notification) event.getParcelableData();
+        CharSequence title = notification.extras.getCharSequence(Notification.EXTRA_TITLE);
         CharSequence[] lines = notification.extras.getCharSequenceArray(Notification.EXTRA_TEXT_LINES);
         for(CharSequence msg : lines) {
             Log.d(TAG, (String) msg);
+        }
+        if (PriorityReceiver.isRelevant(this, title, lines)) {
+            PriorityReceiver.invoke(this);
         }
     }
 
