@@ -15,21 +15,31 @@ public class NotificationService extends AccessibilityService {
 
     @Override
     protected void onServiceConnected() {
+        Log.d(TAG, "connected");
         super.onServiceConnected();
-        AccessibilityServiceInfo info = new AccessibilityServiceInfo();
-        info.eventTypes = AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED;
-        info.feedbackType = AccessibilityServiceInfo.FEEDBACK_ALL_MASK;
-        info.notificationTimeout = 100;
-        setServiceInfo(info);
+        if (false) {
+            AccessibilityServiceInfo info = new AccessibilityServiceInfo();
+            info.eventTypes = AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED;
+            info.feedbackType = AccessibilityServiceInfo.FEEDBACK_ALL_MASK;
+            info.notificationTimeout = 100;
+            setServiceInfo(info);
+            Log.d(TAG, "set service info");
+        }
     }
 
     @Override
     public void onAccessibilityEvent(AccessibilityEvent event) {
+        Log.d(TAG, "accessibility event: " + event);
         Notification notification = (Notification) event.getParcelableData();
         CharSequence title = notification.extras.getCharSequence(Notification.EXTRA_TITLE);
+        if (title != null) {
+            Log.d(TAG, title.toString());
+        }
         CharSequence[] lines = notification.extras.getCharSequenceArray(Notification.EXTRA_TEXT_LINES);
-        for(CharSequence msg : lines) {
-            Log.d(TAG, (String) msg);
+        if (lines != null) {
+            for (CharSequence msg : lines) {
+                Log.d(TAG, msg.toString());
+            }
         }
         if (PriorityReceiver.isRelevant(this, title, lines)) {
             PriorityReceiver.invoke(this);
