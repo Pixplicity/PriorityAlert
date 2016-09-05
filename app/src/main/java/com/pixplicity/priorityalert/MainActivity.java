@@ -25,6 +25,8 @@ public class MainActivity extends AppCompatActivity {
                 Notification notification = new NotificationCompat.Builder(MainActivity.this)
                         .setContentTitle("Test")
                         .setSmallIcon(R.mipmap.ic_launcher)
+                        .setPriority(NotificationCompat.PRIORITY_MAX)
+                        .setDefaults(NotificationCompat.DEFAULT_ALL)
                         .build();
                 nm.notify(1001, notification);
             }
