@@ -3,7 +3,6 @@ package com.pixplicity.priorityalert.services;
 import android.accessibilityservice.AccessibilityService;
 import android.accessibilityservice.AccessibilityServiceInfo;
 import android.app.Notification;
-import android.os.Build;
 import android.util.Log;
 import android.view.accessibility.AccessibilityEvent;
 import android.widget.Toast;
@@ -21,20 +20,9 @@ public class NotificationService extends AccessibilityService {
         super.onServiceConnected();
 
         final AccessibilityServiceInfo info = new AccessibilityServiceInfo();
-        info.eventTypes = AccessibilityEvent.TYPES_ALL_MASK;
-        info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_SPOKEN;
-        info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_AUDIBLE;
-        info.feedbackType |= AccessibilityServiceInfo.FEEDBACK_HAPTIC;
-        info.flags |= AccessibilityServiceInfo.DEFAULT;
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR2) {
-            info.flags |= AccessibilityServiceInfo.FLAG_REQUEST_ENHANCED_WEB_ACCESSIBILITY;
-            info.flags |= AccessibilityServiceInfo.FLAG_REPORT_VIEW_IDS;
-            info.flags |= AccessibilityServiceInfo.FLAG_REQUEST_FILTER_KEY_EVENTS;
-        }
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP_MR1) {
-            info.flags |= AccessibilityServiceInfo.FLAG_RETRIEVE_INTERACTIVE_WINDOWS;
-        }
-        info.notificationTimeout = 0;
+        info.eventTypes = AccessibilityEvent.TYPE_NOTIFICATION_STATE_CHANGED;
+        info.feedbackType = AccessibilityServiceInfo.FEEDBACK_AUDIBLE;
+        info.notificationTimeout = 100;
         setServiceInfo(info);
         Log.d(TAG, "set service info");
     }

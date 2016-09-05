@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <accessibility-service
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:accessibilityEventTypes="typeAllMask"
-    android:accessibilityFeedbackType="feedbackSpoken|feedbackHaptic|feedbackAudible"
-    android:accessibilityFlags="flagDefault|flagRequestTouchExplorationMode|flagRequestEnhancedWebAccessibility|flagReportViewIds|flagRequestFilterKeyEvents"
-    android:canRequestEnhancedWebAccessibility="true"
-    android:canRequestFilterKeyEvents="true"
-    android:canRequestTouchExplorationMode="true"
+    android:accessibilityEventTypes="typeNotificationStateChanged"
+    android:accessibilityFeedbackType="feedbackAudible"
+    android:accessibilityFlags="flagReportViewIds"
     android:canRetrieveWindowContent="true"
     android:description="@string/accessibility_service_description"
     android:notificationTimeout="0"
-    android:settingsActivity="com.android.talkback.TalkBackPreferencesActivity"/>
+    android:settingsActivity="com.pixplicity.priorityalert.MainActivity"/>
