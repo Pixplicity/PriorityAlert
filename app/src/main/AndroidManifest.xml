@@ -22,9 +22,12 @@
         <!-- Accessibility service for reading notifications -->
         <service
             android:name=".services.NotificationService"
+            android:enabled="true"
+            android:exported="false"
             android:permission="android.permission.BIND_ACCESSIBILITY_SERVICE">
             <intent-filter>
                 <action android:name="android.accessibilityservice.AccessibilityService"/>
+                <category android:name="android.accessibilityservice.category.FEEDBACK_GENERIC"/>
             </intent-filter>
 
             <meta-data
@@ -32,10 +35,10 @@
                 android:resource="@xml/accessibility_service_config"/>
         </service>
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
-
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
